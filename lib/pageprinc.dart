@@ -61,6 +61,12 @@ class _DashboardState extends State<Dashboard> {
                 selectedIndex = index;
               });
             },
+            theme: SideNavigationBarTheme(
+              backgroundColor: Colors.blue,
+              togglerTheme: SideNavigationBarTogglerTheme.standard(),
+              itemTheme: SideNavigationBarItemTheme.standard(),
+              dividerTheme: SideNavigationBarDividerTheme.standard(),
+            ),
           ),
 
           /// Make it take the rest of the available width
