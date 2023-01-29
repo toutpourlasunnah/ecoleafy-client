@@ -22,9 +22,13 @@ class _DashboardTabState extends State<DashboardTab> {
   List<Text> eventList = [];
 
   double valueSw1 = 0.0;
-  double valueSw2 = 0.0;
-  double valueSw3 = 0.0;
+  String textSw1 = "OFF";
 
+  double valueSw2 = 0.0;
+  String textSw2 = "OFF";
+
+  double valueSw3 = 0.0;
+  String textSw3 = "OFF";
 
   @override
   void initState() {
@@ -277,42 +281,54 @@ class _DashboardTabState extends State<DashboardTab> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    if (valueSw1 == 0.0) {
-                      valueSw1 = 1.0;
-                    } else {
-                      valueSw1 = 0.0;
-                    }
+                    setState(() {
+                      if (valueSw1 == 0.0) {
+                        valueSw1 = 1.0;
+                        textSw1 = "ON";
+                      } else {
+                        valueSw1 = 0.0;
+                        textSw1 = "OFF";
+                      }
+                    });
 
                     channel.sink.add(jsonEncode(
                         {"room_command": "room1", "switch_1": valueSw1}));
                   },
-                  child: Text("Switch 1"),
+                  child: Text("Switch 1 ${textSw1}"),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if (valueSw2 == 0.0) {
-                      valueSw2 = 1.0;
-                    } else {
-                      valueSw2 = 0.0;
-                    }
+                    setState(() {
+                      if (valueSw2 == 0.0) {
+                        valueSw2 = 1.0;
+                        textSw2 = "ON";
+                      } else {
+                        valueSw2 = 0.0;
+                        textSw2 = "OFF";
+                      }
+                    });
 
                     channel.sink.add(jsonEncode(
                         {"room_command": "room1", "switch_2": valueSw2}));
                   },
-                  child: Text("Switch 2"),
+                  child: Text("Switch 2 ${textSw2}"),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if (valueSw3 == 0.0) {
-                      valueSw3 = 1.0;
-                    } else {
-                      valueSw3 = 0.0;
-                    }
+                    setState(() {
+                      if (valueSw3 == 0.0) {
+                        valueSw3 = 1.0;
+                        textSw3 = "ON";
+                      } else {
+                        valueSw3 = 0.0;
+                        textSw3 = "OFF";
+                      }
+                    });
 
                     channel.sink.add(jsonEncode(
                         {"room_command": "room1", "switch_3": valueSw3}));
                   },
-                  child: Text("Switch 3"),
+                  child: Text("Switch 3 ${textSw3}"),
                 ),
               ],
             ),
