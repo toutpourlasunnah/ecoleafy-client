@@ -60,6 +60,7 @@ class _DashboardTabState extends State<DashboardTab> {
             child: AspectRatio(
               aspectRatio: 16 / 9,
               child: Container(
+                
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.only(
                     left: 10.0, right: 10, top: 50, bottom: 50),
@@ -148,7 +149,7 @@ class _DashboardTabState extends State<DashboardTab> {
                     // border: Border.all(
                     //   color: Colors.redAccent,
                     // ),
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: LineChart(
                   swapAnimationDuration:
                       Duration(milliseconds: 100), // Optional
@@ -221,7 +222,7 @@ class _DashboardTabState extends State<DashboardTab> {
           ),
           Expanded(
             child: Container(
-              child: Text("dss"),
+              child: Text("Recent Events :"),
               // child: StreamBuilder(
               //   stream: channel.stream,
               //   builder: (context, snapshot) {
