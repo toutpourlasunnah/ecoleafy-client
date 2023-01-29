@@ -15,21 +15,27 @@ class DashboardTab extends StatefulWidget {
 
 class _DashboardTabState extends State<DashboardTab> {
   late WebSocketChannel channel;
+  late WebSocketChannel channelEvents;
 
   List<double> temperatureData = [];
   List<double> humidityData = [];
+  List<Text> eventList = [];
 
   @override
   void initState() {
     super.initState();
     channel = WebSocketChannel.connect(Uri.parse("ws://localhost:8181/ws/app"));
+    channelEvents =
+        WebSocketChannel.connect(Uri.parse("ws://localhost:8181/ws/app"));
+
+    channelEvents.sink.add(jsonEncode({"room_history": "room1"}));
+
     channel.sink.add(jsonEncode({"room_history": "room1"}));
 
     channel.stream.listen(
       (dynamic message) {
         final Map<String, dynamic> messageJson = jsonDecode(message);
         // final List<dynamic> values = messageJson['values'];
-        channel.sink.add(jsonEncode({"dsadsadsadssad": "rodsadasdasom1"}));
 
         setState(() {
           if (temperatureData.length > 25)
@@ -45,6 +51,7 @@ class _DashboardTabState extends State<DashboardTab> {
     );
 
     channel.sink.add(jsonEncode({"room": "room1"}));
+    channelEvents.sink.add(jsonEncode({"room": "room1"}));
   }
 
   @override
@@ -60,7 +67,6 @@ class _DashboardTabState extends State<DashboardTab> {
             child: AspectRatio(
               aspectRatio: 16 / 9,
               child: Container(
-                
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.only(
                     left: 10.0, right: 10, top: 50, bottom: 50),
@@ -222,7 +228,33 @@ class _DashboardTabState extends State<DashboardTab> {
           ),
           Expanded(
             child: Container(
-              child: Text("Recent Events :"),
+              child: Column(
+                children: [
+                  Text("Recent Events :"),
+                  StreamBuilder(
+                    stream: channelEvents.stream,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final Map<String, dynamic> messageJson =
+                            jsonDecode(snapshot.data);
+                        if (messageJson['presence']) {
+                          eventList.add(Text(
+                              "Presence detected in " + messageJson['room']));
+                          return new Row(
+                          children: eventList,
+                        );
+                        }
+                        eventList.add(Text("No presence detected"));
+                        return new Row(
+                          children: eventList,
+                        );
+                      } else {
+                        return Text("No data received yet");
+                      }
+                    },
+                  ),
+                ],
+              ),
               // child: StreamBuilder(
               //   stream: channel.stream,
               //   builder: (context, snapshot) {
