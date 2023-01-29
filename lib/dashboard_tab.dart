@@ -239,13 +239,13 @@ class _DashboardTabState extends State<DashboardTab> {
                             jsonDecode(snapshot.data);
                         if (messageJson['presence']) {
                           eventList.add(Text(
-                              "Presence detected in " + messageJson['room']));
-                          return new Row(
+                              "Presence detected in ${messageJson['room']}"));
+                          return Column(
                           children: eventList,
                         );
                         }
                         eventList.add(Text("No presence detected"));
-                        return new Row(
+                        return Column(
                           children: eventList,
                         );
                       } else {
