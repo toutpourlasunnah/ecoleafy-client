@@ -21,6 +21,11 @@ class _DashboardTabState extends State<DashboardTab> {
   List<double> humidityData = [];
   List<Text> eventList = [];
 
+  double valueSw1 = 0.0;
+  double valueSw2 = 0.0;
+  double valueSw3 = 0.0;
+
+
   @override
   void initState() {
     super.initState();
@@ -241,8 +246,8 @@ class _DashboardTabState extends State<DashboardTab> {
                           eventList.add(Text(
                               "Presence detected in ${messageJson['room']}"));
                           return Column(
-                          children: eventList,
-                        );
+                            children: eventList,
+                          );
                         }
                         eventList.add(Text("No presence detected"));
                         return Column(
@@ -267,6 +272,51 @@ class _DashboardTabState extends State<DashboardTab> {
               // ),
             ),
           ),
+          Container(
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    if (valueSw1 == 0.0) {
+                      valueSw1 = 1.0;
+                    } else {
+                      valueSw1 = 0.0;
+                    }
+
+                    channel.sink.add(jsonEncode(
+                        {"room_command": "room1", "switch_1": valueSw1}));
+                  },
+                  child: Text("Switch 1"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (valueSw2 == 0.0) {
+                      valueSw2 = 1.0;
+                    } else {
+                      valueSw2 = 0.0;
+                    }
+
+                    channel.sink.add(jsonEncode(
+                        {"room_command": "room1", "switch_2": valueSw2}));
+                  },
+                  child: Text("Switch 2"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (valueSw3 == 0.0) {
+                      valueSw3 = 1.0;
+                    } else {
+                      valueSw3 = 0.0;
+                    }
+
+                    channel.sink.add(jsonEncode(
+                        {"room_command": "room1", "switch_3": valueSw3}));
+                  },
+                  child: Text("Switch 3"),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
