@@ -8,7 +8,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 Future<void> main() async {
   final channel = WebSocketChannel.connect(
-    Uri.parse("ws://192.168.172.222:8181/ws/app"),
+    Uri.parse("ws://localhost:8181/ws/app"),
   );
   channel.sink.add(jsonEncode({"room": "room1"}));
   channel.stream.listen(
