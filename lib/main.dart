@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-// ignore: unused_import
-import 'pageprinc.dart';
+import 'dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData(
       //   primarySwatch: Colors.blue,
       // ),
-      home: const Dashboard(),
+      home: const DashboardScreen(),
     );
   }
 }

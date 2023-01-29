@@ -1,20 +1,21 @@
+import 'package:front_end/dashboard_tab.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 //import 'package:side_navigation_bar/side_navigation_bar.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({Key? key}) : super(key: key);
 
   @override
-  _DashboardState createState() => _DashboardState();
+  DashboardScreenState createState() => DashboardScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class DashboardScreenState extends State<DashboardScreen> {
   int selectedIndex = 0;
   List<Widget> views = const [
     Center(
-      child: Text('Dashboard'),
+      child: DashboardTab(),
     ),
     Center(
       child: Text('Room'),
