@@ -12,8 +12,8 @@ class DashboardTab extends StatefulWidget {
 }
 
 class _DashboardTabState extends State<DashboardTab> {
-  List<FlSpot> _spots = [];
-  List<FlSpot> _spots1 = [];
+  List<FlSpot> dataTemp = [];
+  List<FlSpot> dataHumidity = [];
 
   @override
   void initState() {
@@ -24,11 +24,16 @@ class _DashboardTabState extends State<DashboardTab> {
     channel.stream.listen((data) {
       final jsonData = jsonDecode(data);
       setState(() {
-        _spots.add(FlSpot(
+        dataTemp.add(FlSpot(
             DateTime.parse(jsonData['timeTaken'])
                 .millisecondsSinceEpoch
                 .toDouble(),
-            jsonData['temperature']));
+            jsonData['humidity']));
+        dataTemp.add(FlSpot(
+            DateTime.parse(jsonData['timeTaken'])
+                .millisecondsSinceEpoch
+                .toDouble(),
+            jsonData['humidity']));
       });
     });
   }
@@ -75,10 +80,8 @@ class _DashboardTabState extends State<DashboardTab> {
                       colors: [Colors.blue, Colors.green],
                     ),
                     spots: [
-                      FlSpot(0, 0),
-                      FlSpot(1, 1),
-                      FlSpot(2, 2),
-                      FlSpot(3, 3),
+                      for (var i = 0; i < dataTemp.length; i++)
+                        FlSpot(dataTemp[i].x, dataTemp[i].y),
                     ],
                   ),
                 ],
