@@ -50,14 +50,17 @@ class _DashboardTabState extends State<DashboardTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Color.fromARGB(235, 218, 218, 218),
       child: GridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 0,
+        childAspectRatio: (16 / 9),
         children: [
           Center(
             child: AspectRatio(
               aspectRatio: 16 / 9,
               child: Container(
+                padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.only(
                     left: 10.0, right: 10, top: 50, bottom: 50),
                 decoration: BoxDecoration(
@@ -65,7 +68,7 @@ class _DashboardTabState extends State<DashboardTab> {
                     // border: Border.all(
                     //   color: Colors.redAccent,
                     // ),
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: LineChart(
                   swapAnimationDuration:
                       Duration(milliseconds: 100), // Optional
@@ -137,6 +140,7 @@ class _DashboardTabState extends State<DashboardTab> {
             child: AspectRatio(
               aspectRatio: 16 / 9,
               child: Container(
+                padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.only(
                     left: 10.0, right: 10, top: 50, bottom: 50),
                 decoration: BoxDecoration(
