@@ -32,7 +32,7 @@ class DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ecoleafy'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 0, 141, 76),
       ),
       body: Row(
         children: [
@@ -63,9 +63,11 @@ class DashboardScreenState extends State<DashboardScreen> {
               });
             },
             theme: SideNavigationBarTheme(
-              backgroundColor: Colors.blue,
+              backgroundColor: Color.fromARGB(255, 34, 45, 50),
               togglerTheme: SideNavigationBarTogglerTheme.standard(),
-              itemTheme: SideNavigationBarItemTheme.standard(),
+              itemTheme: SideNavigationBarItemTheme(
+                  unselectedItemColor: Color.fromARGB(255, 155, 169, 176),
+                  selectedItemColor: Color.fromARGB(255, 229, 233, 232)),
               dividerTheme: SideNavigationBarDividerTheme.standard(),
             ),
           ),
