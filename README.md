@@ -2,6 +2,7 @@
 
 ## Description
 This app is part of the project submission to the McHacks 10 Hackathon 2023. See : https://devpost.com/software/ecoleafy
+
 Ecoleafy is an IoT ecosystem that connects various devices and allows for monitoring and control through a centralized interface. This repository is for the client-side application, built with Flutter.
 
 ## Features
